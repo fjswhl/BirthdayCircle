@@ -10,12 +10,6 @@
 [submodule "submodule/SDWebImage"]
 	path = submodule/SDWebImage
 	url = git@github.com:rs/SDWebImage.git
-[submodule "submodule/ReactiveCocoa"]
-	path = submodule/ReactiveCocoa
-	url = git@github.com:ReactiveCocoa/ReactiveCocoa.git
-[submodule "submodule/SQLite.swift"]
-	path = submodule/SQLite.swift
-	url = git@github.com:stephencelis/SQLite.swift.git
 [submodule "submodule/SVProgressHUD"]
 	path = submodule/SVProgressHUD
 	url = git@github.com:TransitApp/SVProgressHUD.git
