@@ -1,0 +1,24 @@
+[submodule "submodule/Alamofire"]
+	path = submodule/Alamofire
+	url = git@github.com:Alamofire/Alamofire.git
+[submodule "submodule/SwiftyJSON"]
+	path = submodule/SwiftyJSON
+	url = git@github.com:SwiftyJSON/SwiftyJSON.git
+[submodule "submodule/Cartography"]
+	path = submodule/Cartography
+	url = git@github.com:robb/Cartography.git
+[submodule "submodule/SDWebImage"]
+	path = submodule/SDWebImage
+	url = git@github.com:rs/SDWebImage.git
+[submodule "submodule/ReactiveCocoa"]
+	path = submodule/ReactiveCocoa
+	url = git@github.com:ReactiveCocoa/ReactiveCocoa.git
+[submodule "submodule/SQLite.swift"]
+	path = submodule/SQLite.swift
+	url = git@github.com:stephencelis/SQLite.swift.git
+[submodule "submodule/SVProgressHUD"]
+	path = submodule/SVProgressHUD
+	url = git@github.com:TransitApp/SVProgressHUD.git
+[submodule "submodule/Async"]
+	path = submodule/Async
+	url = git@github.com:duemunk/Async.git
