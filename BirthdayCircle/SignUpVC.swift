@@ -16,6 +16,8 @@ class SignUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var inputedAuthCode: String?
     var inputedPwd: String?
     
+    let webSH = WebServicesHandler.sharedHandler
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,6 +73,7 @@ class SignUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 imgView.image = UIImage(named: "ic_phone_small")
                 textField.placeholder = "11位手机号"
                 textField.keyboardType = UIKeyboardType.PhonePad
+                RAC(self, "inputedPhoneNumber") <~ textField.rac_textSignal()
                 
                 let btn = UIButton.buttonWithType(UIButtonType.System) as UIButton
                 btn.setTitle("获取验证码", forState: UIControlState.Normal)
@@ -87,11 +90,12 @@ class SignUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 imgView.image = UIImage(named: "ic_phone_small")
                 textField.placeholder = "手机验证码"
                 textField.keyboardType = UIKeyboardType.NumberPad
-
+                RAC(self, "inputedAuthCode") <~ textField.rac_textSignal()
             case 2:
                 imgView.image = UIImage(named: "ic_password")
                 textField.placeholder = "6-32位密码"
                 textField.secureTextEntry = true
+                RAC(self, "inputedPwd") <~ textField.rac_textSignal()
             default:
                 break
             }
@@ -109,12 +113,34 @@ class SignUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            signup()
+        }
+    }
+    
     
     // MARK:  Button Method
     func getAuthCode() {
-        let webSH = WebServicesHandler.sharedHandler
-        
+        webSH.getAuthCode(phone: self.inputedPhoneNumber!) { data in
+            if data["success"] == "ok" {
+            } else if data["error"] == "userexist" {
+            } else if data["error"] == "errorphone" {
+            } else if data["wait"] == "wait" {
+            }
+        }
 
+    }
+    
+    func signup() {
+        webSH.signup(pwd: self.inputedPwd!, checkCode: self.inputedAuthCode!, phone: self.inputedPhoneNumber!) { (data) -> Void in
+            if data["success"] == "ok" {
+                println("注册成功")
+            } else if data["error"] == "errorparameter" {
+            } else if data["error"] == "errorcheckcode" {
+            } else if data["error"] == "userexist" {
+            }
+        }
     }
 }
 

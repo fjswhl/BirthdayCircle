@@ -10,5 +10,7 @@
 #define BirthdayCircle_BirthdayCircle_Bridging_Header_h_h
 
 
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "SVProgressHUD.h"
+#import <CommonCrypto/CommonCrypto.h>
 #endif

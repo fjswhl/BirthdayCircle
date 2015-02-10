@@ -12,6 +12,8 @@
 	<dict>
 		<key>01C7CF76BEA714FDB263F12465592F660C2298B8</key>
 		<string>github.com:fjswhl/BirthdayCircle.git</string>
+		<key>2FD0F96481B39E576130E173BF6923CF52C91FF7</key>
+		<string>git://github.com/github/specta.git</string>
 		<key>364D2E5F611143E7C4D0A99C691B1988FBD5381F</key>
 		<string>github.com:robb/Cartography.git</string>
 		<key>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</key>
@@ -22,6 +24,8 @@
 		<string>github.com:Alamofire/Alamofire.git</string>
 		<key>7BBBD78982B1FEF327943B86A8813C69AFEC59B1</key>
 		<string>github.com:ReactKit/ReactKit.git</string>
+		<key>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</key>
+		<string>git://github.com/github/expecta.git</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
 		<string>github.com:duemunk/Async.git</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
@@ -41,6 +45,8 @@
 	<dict>
 		<key>01C7CF76BEA714FDB263F12465592F660C2298B8</key>
 		<string>../..</string>
+		<key>2FD0F96481B39E576130E173BF6923CF52C91FF7</key>
+		<string>../../submodule/ReactCoco/external/specta/</string>
 		<key>364D2E5F611143E7C4D0A99C691B1988FBD5381F</key>
 		<string>../..submodule/Cartography</string>
 		<key>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</key>
@@ -51,6 +57,8 @@
 		<string>../..submodule/Alamofire</string>
 		<key>7BBBD78982B1FEF327943B86A8813C69AFEC59B1</key>
 		<string>../../submodule/ReactKit</string>
+		<key>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</key>
+		<string>../../submodule/ReactCoco/external/expecta/</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
 		<string>../..submodule/Async</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
@@ -108,6 +116,14 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>expecta</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>51B210D0D41486D3ADD6940D57E4480BBD4DE4C5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ReactiveCocoa</string>
@@ -127,6 +143,14 @@
 			<string>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SDWebImage</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2FD0F96481B39E576130E173BF6923CF52C91FF7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>specta</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
