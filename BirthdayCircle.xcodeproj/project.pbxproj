@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E7A1A561A8875B100E6A224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7A1A551A8875B100E6A224 /* AppDelegate.swift */; };
-		3E7A1A581A8875B100E6A224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7A1A571A8875B100E6A224 /* ViewController.swift */; };
 		3E7A1A5B1A8875B100E6A224 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E7A1A591A8875B100E6A224 /* Main.storyboard */; };
 		3E7A1A5D1A8875B100E6A224 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E7A1A5C1A8875B100E6A224 /* Images.xcassets */; };
 		3E7A1A601A8875B100E6A224 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7A1A5E1A8875B100E6A224 /* LaunchScreen.xib */; };
@@ -54,6 +53,13 @@
 		3E7A1AE01A887D7C00E6A224 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7A1ADB1A887D7C00E6A224 /* SVIndefiniteAnimatedView.m */; };
 		3E7A1AE11A887D7C00E6A224 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3E7A1ADD1A887D7C00E6A224 /* SVProgressHUD.bundle */; };
 		3E7A1AE21A887D7C00E6A224 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7A1ADF1A887D7C00E6A224 /* SVProgressHUD.m */; };
+		3EB903C31A88A047009CEBCB /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB903C21A88A047009CEBCB /* MeVC.swift */; };
+		3EB903C61A88ACF0009CEBCB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB903C51A88ACF0009CEBCB /* LoginVC.swift */; };
+		3EB903C81A88BE10009CEBCB /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB903C71A88BE10009CEBCB /* SignUpVC.swift */; };
+		3EB903CA1A88D707009CEBCB /* WebServicesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB903C91A88D707009CEBCB /* WebServicesHandler.swift */; };
+		3EB903D01A890627009CEBCB /* _StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB903CC1A890627009CEBCB /* _StateMachine.swift */; };
+		3EB903D11A890627009CEBCB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EB903CD1A890627009CEBCB /* Info.plist */; };
+		3EB903D21A890627009CEBCB /* SwiftTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB903CF1A890627009CEBCB /* SwiftTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,23 +72,10 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		3E7A1AF51A887FB000E6A224 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		3E7A1A501A8875B100E6A224 /* BirthdayCircle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayCircle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7A1A541A8875B100E6A224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E7A1A551A8875B100E6A224 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3E7A1A571A8875B100E6A224 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E7A1A5A1A8875B100E6A224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E7A1A5C1A8875B100E6A224 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E7A1A5F1A8875B100E6A224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -152,6 +145,14 @@
 		3E7A1ADE1A887D7C00E6A224 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3E7A1ADF1A887D7C00E6A224 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		3E7A1B181A88853200E6A224 /* BirthdayCircle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BirthdayCircle-Bridging-Header.h"; sourceTree = "<group>"; };
+		3EB903C21A88A047009CEBCB /* MeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
+		3EB903C51A88ACF0009CEBCB /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		3EB903C71A88BE10009CEBCB /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		3EB903C91A88D707009CEBCB /* WebServicesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesHandler.swift; sourceTree = "<group>"; };
+		3EB903CC1A890627009CEBCB /* _StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _StateMachine.swift; sourceTree = "<group>"; };
+		3EB903CD1A890627009CEBCB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EB903CE1A890627009CEBCB /* SwiftTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftTask.h; sourceTree = "<group>"; };
+		3EB903CF1A890627009CEBCB /* SwiftTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,9 +194,10 @@
 		3E7A1A521A8875B100E6A224 /* BirthdayCircle */ = {
 			isa = PBXGroup;
 			children = (
+				3EDC78421A890F4200EC410A /* Extension */,
 				3E7A1A751A887C5A00E6A224 /* 3rd */,
 				3E7A1A551A8875B100E6A224 /* AppDelegate.swift */,
-				3E7A1A571A8875B100E6A224 /* ViewController.swift */,
+				3EB903C11A889FAB009CEBCB /* ViewController */,
 				3E7A1A591A8875B100E6A224 /* Main.storyboard */,
 				3E7A1A5C1A8875B100E6A224 /* Images.xcassets */,
 				3E7A1A5E1A8875B100E6A224 /* LaunchScreen.xib */,
@@ -233,6 +235,7 @@
 		3E7A1A751A887C5A00E6A224 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				3EB903CB1A890627009CEBCB /* SwiftTask */,
 				3E7A1AD91A887D7C00E6A224 /* SVProgressHUD */,
 				3E7A1AD61A887D4700E6A224 /* SwiftJSON */,
 				3E7A1AA41A887CDF00E6A224 /* SDWebImage */,
@@ -350,6 +353,44 @@
 			path = submodule/SVProgressHUD/SVProgressHUD;
 			sourceTree = SOURCE_ROOT;
 		};
+		3EB903C11A889FAB009CEBCB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3EB903C41A88ACDB009CEBCB /* Me */,
+				3EB903C91A88D707009CEBCB /* WebServicesHandler.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		3EB903C41A88ACDB009CEBCB /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				3EB903C21A88A047009CEBCB /* MeVC.swift */,
+				3EB903C51A88ACF0009CEBCB /* LoginVC.swift */,
+				3EB903C71A88BE10009CEBCB /* SignUpVC.swift */,
+			);
+			name = Me;
+			sourceTree = "<group>";
+		};
+		3EB903CB1A890627009CEBCB /* SwiftTask */ = {
+			isa = PBXGroup;
+			children = (
+				3EB903CC1A890627009CEBCB /* _StateMachine.swift */,
+				3EB903CD1A890627009CEBCB /* Info.plist */,
+				3EB903CE1A890627009CEBCB /* SwiftTask.h */,
+				3EB903CF1A890627009CEBCB /* SwiftTask.swift */,
+			);
+			name = SwiftTask;
+			path = submodule/SwiftTask/SwiftTask;
+			sourceTree = SOURCE_ROOT;
+		};
+		3EDC78421A890F4200EC410A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -360,7 +401,6 @@
 				3E7A1A4C1A8875B100E6A224 /* Sources */,
 				3E7A1A4D1A8875B100E6A224 /* Frameworks */,
 				3E7A1A4E1A8875B100E6A224 /* Resources */,
-				3E7A1AF51A887FB000E6A224 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -433,6 +473,7 @@
 			files = (
 				3E7A1AE11A887D7C00E6A224 /* SVProgressHUD.bundle in Resources */,
 				3E7A1A9B1A887CBC00E6A224 /* Info.plist in Resources */,
+				3EB903D11A890627009CEBCB /* Info.plist in Resources */,
 				3E7A1A5B1A8875B100E6A224 /* Main.storyboard in Resources */,
 				3E7A1A601A8875B100E6A224 /* LaunchScreen.xib in Resources */,
 				3E7A1A5D1A8875B100E6A224 /* Images.xcassets in Resources */,
@@ -455,6 +496,7 @@
 			files = (
 				3E7A1AD01A887CDF00E6A224 /* UIImage+GIF.m in Sources */,
 				3E7A1A991A887CBC00E6A224 /* Expression.swift in Sources */,
+				3EB903C61A88ACF0009CEBCB /* LoginVC.swift in Sources */,
 				3E7A1A971A887CBC00E6A224 /* Edge.swift in Sources */,
 				3E7A1AA31A887CBC00E6A224 /* ViewUtils.swift in Sources */,
 				3E7A1AA01A887CBC00E6A224 /* Property.swift in Sources */,
@@ -465,6 +507,7 @@
 				3E7A1AA21A887CBC00E6A224 /* View.swift in Sources */,
 				3E7A1ACA1A887CDF00E6A224 /* SDWebImageDecoder.m in Sources */,
 				3E7A1A981A887CBC00E6A224 /* Edges.swift in Sources */,
+				3EB903C81A88BE10009CEBCB /* SignUpVC.swift in Sources */,
 				3E7A1AD41A887CDF00E6A224 /* UIImageView+WebCache.m in Sources */,
 				3E7A1A7B1A887CAB00E6A224 /* Async.swift in Sources */,
 				3E7A1A941A887CBC00E6A224 /* ConstraintGroup.swift in Sources */,
@@ -474,11 +517,11 @@
 				3E7A1A931A887CBC00E6A224 /* Constraint.swift in Sources */,
 				3E7A1AD31A887CDF00E6A224 /* UIImageView+HighlightedWebCache.m in Sources */,
 				3E7A1A781A887C8D00E6A224 /* Alamofire.swift in Sources */,
-				3E7A1A581A8875B100E6A224 /* ViewController.swift in Sources */,
 				3E7A1A951A887CBC00E6A224 /* Context.swift in Sources */,
 				3E7A1AE21A887D7C00E6A224 /* SVProgressHUD.m in Sources */,
 				3E7A1A921A887CBC00E6A224 /* Compound.swift in Sources */,
 				3E7A1AD81A887D5600E6A224 /* SwiftyJSON.swift in Sources */,
+				3EB903D01A890627009CEBCB /* _StateMachine.swift in Sources */,
 				3E7A1AD51A887CDF00E6A224 /* UIView+WebCacheOperation.m in Sources */,
 				3E7A1AC91A887CDF00E6A224 /* SDWebImageCompat.m in Sources */,
 				3E7A1A9D1A887CBC00E6A224 /* LayoutProxy.swift in Sources */,
@@ -486,14 +529,17 @@
 				3E7A1A961A887CBC00E6A224 /* Dimension.swift in Sources */,
 				3E7A1AA11A887CBC00E6A224 /* Size.swift in Sources */,
 				3E7A1ACE1A887CDF00E6A224 /* SDWebImagePrefetcher.m in Sources */,
+				3EB903C31A88A047009CEBCB /* MeVC.swift in Sources */,
 				3E7A1A561A8875B100E6A224 /* AppDelegate.swift in Sources */,
 				3E7A1ACC1A887CDF00E6A224 /* SDWebImageDownloaderOperation.m in Sources */,
 				3E7A1A9A1A887CBC00E6A224 /* Extensions.swift in Sources */,
 				3E7A1AE01A887D7C00E6A224 /* SVIndefiniteAnimatedView.m in Sources */,
+				3EB903D21A890627009CEBCB /* SwiftTask.swift in Sources */,
 				3E7A1ACD1A887CDF00E6A224 /* SDWebImageManager.m in Sources */,
 				3E7A1AD21A887CDF00E6A224 /* UIImage+WebP.m in Sources */,
 				3E7A1A9F1A887CBC00E6A224 /* Priority.swift in Sources */,
 				3E7A1AC81A887CDF00E6A224 /* SDImageCache.m in Sources */,
+				3EB903CA1A88D707009CEBCB /* WebServicesHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +751,7 @@
 				3E7A1A711A8875B100E6A224 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E7A1A721A8875B100E6A224 /* Build configuration list for PBXNativeTarget "BirthdayCircleTests" */ = {
 			isa = XCConfigurationList;
@@ -713,6 +760,7 @@
 				3E7A1A741A8875B100E6A224 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

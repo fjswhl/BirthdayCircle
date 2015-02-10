@@ -20,12 +20,16 @@
 		<string>github.com:ReactiveCocoa/ReactiveCocoa.git</string>
 		<key>67620B5EFA902936DF04070AF595B76AB0333747</key>
 		<string>github.com:Alamofire/Alamofire.git</string>
+		<key>7BBBD78982B1FEF327943B86A8813C69AFEC59B1</key>
+		<string>github.com:ReactKit/ReactKit.git</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
 		<string>github.com:duemunk/Async.git</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
 		<string>github.com:TransitApp/SVProgressHUD.git</string>
 		<key>C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3</key>
 		<string>github.com:SwiftyJSON/SwiftyJSON.git</string>
+		<key>DF9A3E2A3372F2EF94714F47B19B6C0DCBBF4AB9</key>
+		<string>github.com:ReactKit/SwiftTask.git</string>
 		<key>E084C86B03F81D63323C9E7510697EA528A758C7</key>
 		<string>https://github.com/jspahrsummers/xcconfigs.git</string>
 		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
@@ -38,23 +42,27 @@
 		<key>01C7CF76BEA714FDB263F12465592F660C2298B8</key>
 		<string>../..</string>
 		<key>364D2E5F611143E7C4D0A99C691B1988FBD5381F</key>
-		<string>../..submodule/Cartography/</string>
+		<string>../..submodule/Cartography</string>
 		<key>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</key>
-		<string>../..submodule/SQLite.swift/</string>
+		<string>../..submodule/SQLite.swift</string>
 		<key>51B210D0D41486D3ADD6940D57E4480BBD4DE4C5</key>
-		<string>../..submodule/ReactiveCocoa/</string>
+		<string>../..submodule/ReactiveCocoa</string>
 		<key>67620B5EFA902936DF04070AF595B76AB0333747</key>
-		<string>../..submodule/Alamofire/</string>
+		<string>../..submodule/Alamofire</string>
+		<key>7BBBD78982B1FEF327943B86A8813C69AFEC59B1</key>
+		<string>../../submodule/ReactKit</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
-		<string>../..submodule/Async/</string>
+		<string>../..submodule/Async</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
-		<string>../..submodule/SVProgressHUD/</string>
+		<string>../..submodule/SVProgressHUD</string>
 		<key>C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3</key>
-		<string>../..submodule/SwiftyJSON/</string>
+		<string>../..submodule/SwiftyJSON</string>
+		<key>DF9A3E2A3372F2EF94714F47B19B6C0DCBBF4AB9</key>
+		<string>../../submodule/SwiftTask</string>
 		<key>E084C86B03F81D63323C9E7510697EA528A758C7</key>
-		<string>../..submodule/ReactiveCocoa/Carthage/Checkouts/xcconfigs/</string>
+		<string>../..submodule/ReactiveCocoa/Carthage/Checkouts/xcconfigs</string>
 		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
-		<string>../..submodule/SDWebImage/</string>
+		<string>../..submodule/SDWebImage</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:fjswhl/BirthdayCircle.git</string>
@@ -108,6 +116,14 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7BBBD78982B1FEF327943B86A8813C69AFEC59B1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ReactKit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SDWebImage</string>
@@ -127,6 +143,14 @@
 			<string>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SVProgressHUD</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DF9A3E2A3372F2EF94714F47B19B6C0DCBBF4AB9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SwiftTask</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
