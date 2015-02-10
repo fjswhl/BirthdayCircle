@@ -16,4 +16,3 @@
 [submodule "submodule/Async"]
 	path = submodule/Async
 	url = git@github.com:duemunk/Async.git
-
