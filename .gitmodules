@@ -17,9 +17,3 @@
 	path = submodule/Async
 	url = git@github.com:duemunk/Async.git
 
-[submodule "submodule/ReactKit"]
-	path = submodule/ReactKit
-	url = git@github.com:ReactKit/ReactKit.git
-[submodule "submodule/SwiftTask"]
-	path = submodule/SwiftTask
-	url = git@github.com:ReactKit/SwiftTask.git
