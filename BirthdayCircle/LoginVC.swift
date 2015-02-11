@@ -12,7 +12,10 @@ class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var tableView: UITableView!
     var rowHeight:CGFloat = 44.0
     var rowImgHeight: CGFloat = 25.0
-
+    
+    var inputedPhone: String?
+    var inputedPwd: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,10 +72,12 @@ class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 imgView.image = UIImage(named: "ic_phone_small")
                 textField.placeholder = "手机号"
                 textField.keyboardType = UIKeyboardType.PhonePad
+                RAC(self, "inputedPhone") <~ textField.rac_textSignal()
             case 1:
                 imgView.image = UIImage(named: "ic_password")
                 textField.placeholder = "密码"
                 textField.secureTextEntry = true
+                RAC(self, "inputedPwd") <~ textField.rac_textSignal()
             default:
                 break
         
@@ -135,11 +140,34 @@ class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return view
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            signIn()
+        }
+    }
+    
     // MARK: Button Method
     
     func signUp(sender: UIButton!) {
         let signUpVC = SignUpVC()
         self.navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    func signIn() {
+        let webSH = WebServicesHandler.sharedHandler
+        SVProgressHUD.show()
+        webSH.signin(phone: inputedPhone!, pwd: inputedPwd!) { (data) -> Void in
+            SVProgressHUD.dismiss()
+            if let uid = data["success"].int {
+                println("登入成功 uid：\(uid)")
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: USER_DID_LOGIN_LEY)
+                NSUserDefaults.standardUserDefaults().setObject(self.inputedPwd!, forKey: USER_PWD_KEY)
+                NSUserDefaults.standardUserDefaults().setObject(self.inputedPhone!, forKey: USER_PHONE_KEY)
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                println("帐号或密码不正确")
+            }
+        }
     }
 }
 

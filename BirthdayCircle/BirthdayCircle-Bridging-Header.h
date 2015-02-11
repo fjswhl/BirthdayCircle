@@ -13,4 +13,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SVProgressHUD.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "XLForm.h"
+
 #endif

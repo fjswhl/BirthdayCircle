@@ -29,6 +29,12 @@ class WebServicesHandler: NSObject {
     // 用户联系人
     private let addFriend = "/Friend/addFriend"
     
+    var userLogged: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_LEY)
+        }
+    }
+    
     class var sharedHandler: WebServicesHandler {
         return sharedInstance
     }
@@ -43,7 +49,7 @@ class WebServicesHandler: NSObject {
     }
     
     func signup(#pwd: String, checkCode: String, phone: String, handler: (data: JSON) -> Void) {
-        let md5ed = pwd.md5[0...20].md5
+        let md5ed = pwd.md5[0...19].md5
         let params = ["password": md5ed,
                       "checkcode": checkCode,
                       "phone": phone]
@@ -107,7 +113,7 @@ class WebServicesHandler: NSObject {
     
     func resetPWD(#pwd: String, checkcode: String, handler: (data: JSON) -> Void) {
         let url = synthesizedURL(path: resetPWDURL)
-        let md5ed = pwd.md5[0...20].md5
+        let md5ed = pwd.md5[0...19].md5
         let params = ["password": md5ed,
                       "checkcode": checkcode]
         
@@ -137,7 +143,7 @@ class WebServicesHandler: NSObject {
     }
     
     
-    
+    // MARK: -
 
     /**
         以 baseURL 为 base 合成 URL
@@ -171,19 +177,30 @@ class WebServicesHandler: NSObject {
                 }
                 
                 let json = JSON(data!)
+                /// 如果用户已登入，但是 session 过期了，则自动重新登入
+                if json["error"].stringValue == "loadfirst" || json["error"].stringValue == "loginfirst"{
+                    let phone = NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String
+                    let pwd = NSUserDefaults.standardUserDefaults().objectForKey(USER_PWD_KEY) as String
+                    self.signin(phone: phone, pwd: pwd, handler: { (data) -> Void in
+                        println("自动登入")
+                        self.requestDispatcher(params, url, handler)
+                    })
+                    
+                    return
+                }
+                
                 handler(data: json)
                 
-                self.debugInfo(req, json)
+                self.debugInfo(url, params, json)
                 
         }
         
-        
-        
     }
     
-    func debugInfo(req: NSURLRequest,_ data: JSON) {
+    func debugInfo(url: String, _ params: [String: AnyObject]? ,_ data: JSON) {
         if DEBUG {
-            println(req)
+            println("posted url: \(url)")
+            println("params: \(params)")
             println("result: \(data)")
         }
     }

@@ -8,72 +8,96 @@
 
 import UIKit
 
-class MeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var tableView: UITableView!
+
+private let AC_SETTING_ROW_KEY = "setting"
+
+class MeVC: XLFormViewController {
     
+    var userDidLogin: Bool = NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_LEY)
+    var userProfile: UserProfile!
+    
+    override init() {
+        super.init()
+        initializeProfile()
+        initializeForm()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initializeProfile()
+        initializeForm()
+
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        initializeProfile()
+        initializeForm()
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.title = "我"
         
-        self.tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Plain)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        self.view.addSubview(self.tableView)
-        layout(tableView) { tableView in
-            tableView.edges == tableView.superview!.edges
-            return
+        self.userDidLogin = NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_LEY)
+        var row = self.form.formRowWithTag(AC_SETTING_ROW_KEY)
+        if self.userDidLogin {
+            row.action.viewControllerClass = AccountSetting.self
+        } else {
+            row.action.viewControllerClass = LoginVC.self
         }
+    }
+    
+    func initializeForm() {
+        let form = XLFormDescriptor()
+        var section = XLFormSectionDescriptor()
+        
+        form.addFormSection(section)
+        var row = XLFormRowDescriptor(tag: "Me", rowType: XLFormRowDescriptorTypeButton, title: "尚未登入")
+        if userDidLogin == false {
+            row.action.viewControllerClass = LoginVC.self
+        }
+        var img = UIImage(named: "ic_user_not_login")
+        row.cellConfig.setObject(img!, forKey: "imageView.image")
+        section.addFormRow(row)
+        row = XLFormRowDescriptor(tag: "memory", rowType: XLFormRowDescriptorTypeButton, title: "美好回忆")
+        row.action.viewControllerClass = MoreVC.self
+        img = UIImage(named: "ic_memory")
+        row.cellConfig.setObject(img!, forKey: "imageView.image")
+        section.addFormRow(row)
+        row = XLFormRowDescriptor(tag: "more", rowType: XLFormRowDescriptorTypeButton, title: "更多")
+        row.action.viewControllerClass = MoreVC.self
+        img = UIImage(named: "ic_settings")
+        row.cellConfig.setObject(img!, forKey: "imageView.image")
+        section.addFormRow(row)
+        row = XLFormRowDescriptor(tag: AC_SETTING_ROW_KEY, rowType: XLFormRowDescriptorTypeButton, title: "账户设置")
+        if userDidLogin == false {
+            row.action.viewControllerClass = LoginVC.self
+        } else {
+            row.action.viewControllerClass = AccountSetting.self
+        }
+        img = UIImage(named: "ic_account_setting")
+        row.cellConfig.setObject(img!, forKey: "imageView.image")
+        section.addFormRow(row)
+        
+        self.form = form
+    }
+    
+    func initializeProfile() {
+        if self.userDidLogin {
+            let pfs = UserProfileService.sharedProfile
+            pfs.fetchProfile({ (userProfile) -> Void in
+                self.userProfile = userProfile
+            })
+        }
+    }
 
-        
-    }
-    
-    
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44.0
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "尚未登入"
-            cell.imageView?.image = UIImage(named: "ic_user_not_login")
-        case 1:
-            cell.textLabel?.text = "美好回忆"
-            cell.imageView?.image = UIImage(named: "ic_memory")
-        case 2:
-            cell.textLabel?.text = "更多"
-            cell.imageView?.image = UIImage(named: "ic_settings")
-        case 3:
-            cell.textLabel?.text = "账户设置"
-            cell.imageView?.image = UIImage(named: "ic_account_setting")
-        default:
-            break
-        }
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case 0:
-            let loginVC = LoginVC()
-            self.navigationController?.pushViewController(loginVC, animated: true)
-        default:
-            break
-        }
-    }
     
 }
 

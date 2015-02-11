@@ -75,8 +75,9 @@ class SignUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 textField.keyboardType = UIKeyboardType.PhonePad
                 RAC(self, "inputedPhoneNumber") <~ textField.rac_textSignal()
                 
-                let btn = UIButton.buttonWithType(UIButtonType.System) as UIButton
-                btn.setTitle("获取验证码", forState: UIControlState.Normal)
+                let btn = ZFRippleButton(frame: CGRectZero)
+                btn.trackTouchLocation = true
+                btn.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: ["fontSize" : 8, "fontColor": UIColor.redColor()]), forState: UIControlState.Normal)
                 btn.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
                 btn.addTarget(self, action: "getAuthCode", forControlEvents: UIControlEvents.TouchUpInside)
                 cell.contentView.addSubview(btn)
@@ -136,6 +137,8 @@ class SignUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         webSH.signup(pwd: self.inputedPwd!, checkCode: self.inputedAuthCode!, phone: self.inputedPhoneNumber!) { (data) -> Void in
             if data["success"] == "ok" {
                 println("注册成功")
+                NSUserDefaults.standardUserDefaults().setObject(self.inputedPwd!, forKey: USER_PWD_KEY)
+                NSUserDefaults.standardUserDefaults().setObject(self.inputedPhoneNumber!, forKey: USER_PHONE_KEY)
             } else if data["error"] == "errorparameter" {
             } else if data["error"] == "errorcheckcode" {
             } else if data["error"] == "userexist" {

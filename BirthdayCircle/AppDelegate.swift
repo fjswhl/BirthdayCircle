@@ -9,6 +9,10 @@
 import UIKit
 
 
+let USER_DID_LOGIN_LEY = "didLogIn"
+let USER_PWD_KEY = "user_pwd"
+let USER_PHONE_KEY = "user_phone"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        println("fff".md5)
+        UINavigationBar.appearance().
         return true
     }
 

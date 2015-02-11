@@ -16,3 +16,12 @@
 [submodule "submodule/Async"]
 	path = submodule/Async
 	url = git@github.com:duemunk/Async.git
+[submodule "submodule/ZFRippleButton"]
+	path = submodule/ZFRippleButton
+	url = git@github.com:zoonooz/ZFRippleButton.git
+[submodule "submodule/ExSwift"]
+	path = submodule/ExSwift
+	url = git@github.com:pNre/ExSwift.git
+[submodule "submodule/XLForm"]
+	path = submodule/XLForm
+	url = git@github.com:xmartlabs/XLForm.git

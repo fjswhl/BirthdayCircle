@@ -12,6 +12,8 @@
 	<dict>
 		<key>01C7CF76BEA714FDB263F12465592F660C2298B8</key>
 		<string>github.com:fjswhl/BirthdayCircle.git</string>
+		<key>2C9E9822513E4C4EEC1151F82CF3EC39896E8D51</key>
+		<string>github.com:zoonooz/ZFRippleButton.git</string>
 		<key>2FD0F96481B39E576130E173BF6923CF52C91FF7</key>
 		<string>git://github.com/github/specta.git</string>
 		<key>364D2E5F611143E7C4D0A99C691B1988FBD5381F</key>
@@ -30,6 +32,8 @@
 		<string>github.com:duemunk/Async.git</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
 		<string>github.com:TransitApp/SVProgressHUD.git</string>
+		<key>AF7423C487C4B1B7082E587F3AB70804F6530E81</key>
+		<string>github.com:xmartlabs/XLForm.git</string>
 		<key>C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3</key>
 		<string>github.com:SwiftyJSON/SwiftyJSON.git</string>
 		<key>DF9A3E2A3372F2EF94714F47B19B6C0DCBBF4AB9</key>
@@ -45,8 +49,10 @@
 	<dict>
 		<key>01C7CF76BEA714FDB263F12465592F660C2298B8</key>
 		<string>../..</string>
+		<key>2C9E9822513E4C4EEC1151F82CF3EC39896E8D51</key>
+		<string>../../submodule/ZFRippleButton</string>
 		<key>2FD0F96481B39E576130E173BF6923CF52C91FF7</key>
-		<string>../../submodule/ReactCoco/external/specta/</string>
+		<string>../../submodule/ReactCoco/external/specta</string>
 		<key>364D2E5F611143E7C4D0A99C691B1988FBD5381F</key>
 		<string>../..submodule/Cartography</string>
 		<key>3AE8ED2E684071AF4FB151FA51BF266B82FF45BD</key>
@@ -58,11 +64,13 @@
 		<key>7BBBD78982B1FEF327943B86A8813C69AFEC59B1</key>
 		<string>../../submodule/ReactKit</string>
 		<key>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</key>
-		<string>../../submodule/ReactCoco/external/expecta/</string>
+		<string>../../submodule/ReactCoco/external/expecta</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
 		<string>../..submodule/Async</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
 		<string>../..submodule/SVProgressHUD</string>
+		<key>AF7423C487C4B1B7082E587F3AB70804F6530E81</key>
+		<string>../../submodule/XLForm</string>
 		<key>C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3</key>
 		<string>../..submodule/SwiftyJSON</string>
 		<key>DF9A3E2A3372F2EF94714F47B19B6C0DCBBF4AB9</key>
@@ -191,6 +199,22 @@
 			<string>E084C86B03F81D63323C9E7510697EA528A758C7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>xcconfigs</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AF7423C487C4B1B7082E587F3AB70804F6530E81</string>
+			<key>IDESourceControlWCCName</key>
+			<string>XLForm</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2C9E9822513E4C4EEC1151F82CF3EC39896E8D51</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ZFRippleButton</string>
 		</dict>
 	</array>
 </dict>
