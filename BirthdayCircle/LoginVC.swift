@@ -93,6 +93,7 @@ class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 return
             }
         }
+        println(cell.frame)
         return cell
     }
     
