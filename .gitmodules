@@ -25,3 +25,6 @@
 [submodule "submodule/XLForm"]
 	path = submodule/XLForm
 	url = git@github.com:xmartlabs/XLForm.git
+[submodule "submodule/ReactiveCoco"]
+	path = submodule/ReactiveCoco
+	url = git@github.com:yusefnapora/ReactiveCocoa.git
