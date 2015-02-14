@@ -30,6 +30,8 @@
 		<string>git://github.com/github/expecta.git</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
 		<string>github.com:duemunk/Async.git</string>
+		<key>958932E9D08E4465709D54DB1E7CECF23B0F442E</key>
+		<string>github.com:magicalpanda/MagicalRecord.git</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
 		<string>github.com:TransitApp/SVProgressHUD.git</string>
 		<key>AF7423C487C4B1B7082E587F3AB70804F6530E81</key>
@@ -67,6 +69,8 @@
 		<string>../../submodule/ReactCoco/external/expecta</string>
 		<key>8CCFBC236B2D99F3320873838535AF1EA5422AB1</key>
 		<string>../..submodule/Async</string>
+		<key>958932E9D08E4465709D54DB1E7CECF23B0F442E</key>
+		<string>../../submodule/MagicalRecord</string>
 		<key>9E1ECC80773D1F4F22D03CB4DEA298B3CB57FAF5</key>
 		<string>../..submodule/SVProgressHUD</string>
 		<key>AF7423C487C4B1B7082E587F3AB70804F6530E81</key>
@@ -127,6 +131,14 @@
 			<string>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</string>
 			<key>IDESourceControlWCCName</key>
 			<string>expecta</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>958932E9D08E4465709D54DB1E7CECF23B0F442E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MagicalRecord</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

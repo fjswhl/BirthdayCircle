@@ -55,6 +55,14 @@ class MoreVC: XLFormViewController {
     func test() {
         println("button tapped")
     }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20.0
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
 }
 
 

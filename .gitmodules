@@ -28,3 +28,6 @@
 [submodule "submodule/ReactiveCoco"]
 	path = submodule/ReactiveCoco
 	url = git@github.com:yusefnapora/ReactiveCocoa.git
+[submodule "submodule/MagicalRecord"]
+	path = submodule/MagicalRecord
+	url = git@github.com:magicalpanda/MagicalRecord.git

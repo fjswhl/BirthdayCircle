@@ -8,104 +8,70 @@
 
 import UIKit
 
-class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var tableView: UITableView!
-    var rowHeight:CGFloat = 44.0
-    var rowImgHeight: CGFloat = 25.0
+
+let USER_DID_LOGIN = "USER_DID_LOGIN"
+
+class LoginVC: XLFormViewController {
     
-    var inputedPhone: String?
-    var inputedPwd: String?
+    let loginButtonFontSize = 18.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override init() {
+        super.init()
+        initializeForm()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        initializeForm()
         
-        self.tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Grouped)
-        self.tableView.rowHeight = self.rowHeight
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
+    }
 
-        
-        
-        self.view.addSubview(tableView)
-        layout(tableView) { tableView in
-            tableView.edges == tableView.superview!.edges
-            return
-        }
-        
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        }
-        return 1
-    }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+    func initializeForm() {
+        let form = XLFormDescriptor(title: "登入")
+        var section = XLFormSectionDescriptor()
         
-        if indexPath.section == 0 {
-            let imgView = UIImageView()
-            cell.contentView.addSubview(imgView)
-            let textField = UITextField()
-            cell.contentView.addSubview(textField)
-            
-            layout(imgView, textField) { imgView, textField in
-                imgView.centerY == imgView.superview!.centerY
-                imgView.height == self.rowImgHeight
-                imgView.width == self.rowImgHeight
-                imgView.leading == imgView.superview!.leading + 6
-                
-                textField.centerY == textField.superview!.centerY
-                textField.height == textField.superview!.height
-                textField.leading == imgView.trailing + 3
-                textField.trailing == textField.superview!.trailing - 3
-            }
-            
-            switch indexPath.row {
-            case 0:
-                imgView.image = UIImage(named: "ic_phone_small")
-                textField.placeholder = "手机号"
-                textField.keyboardType = UIKeyboardType.PhonePad
-                RAC(self, "inputedPhone") <~ textField.rac_textSignal()
-            case 1:
-                imgView.image = UIImage(named: "ic_password")
-                textField.placeholder = "密码"
-                textField.secureTextEntry = true
-                RAC(self, "inputedPwd") <~ textField.rac_textSignal()
-            default:
-                break
+        form.addFormSection(section)
+        var row = XLFormRowDescriptor(tag: "phone", rowType: XLFormRowDescriptorTypePhone, title: "手机号：")
+
+        row.cellConfig.setObject("请输入生日圈手机号", forKey: "textField.placeholder")
+        section.addFormRow(row)
+        row = XLFormRowDescriptor(tag: "pwd", rowType: XLFormRowDescriptorTypePassword, title: "密　码：")
+        row.cellConfig.setObject("请输入登入密码", forKey: "textField.placeholder")
+        section.addFormRow(row)
         
-            }
-        } else {
-            let label = UILabel()
-            label.text = "登入"
-            label.sizeToFit()
-            cell.contentView.addSubview(label)
-            
-            layout(label) { label in
-                label.center == label.superview!.center
-                return
-            }
-        }
-        println(cell.frame)
-        return cell
+        section = XLFormSectionDescriptor()
+        form.addFormSection(section)
+        row = XLFormRowDescriptor(tag: "login", rowType: XLFormRowDescriptorTypeButton, title: "登入")
+        row.action.formSelector = "signIn"
+        row.cellConfig.setObject(HexUIColor("ff6622"), forKey: "backgroundColor")
+        let view = UIView()
+        view.backgroundColor = HexUIColor("ff4400")
+        row.cellConfig.setObject(view, forKey: "selectedBackgroundView")
+        row.cellConfig.setObject(UIColor.whiteColor(), forKey: "textLabel.textColor")
+        row.cellConfig.setObject(UIFont.systemFontOfSize(18.0), forKey: "textLabel.font")
+        section.addFormRow(row)
+        
+        self.form = form
     }
+
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
             return footerView()
         }
-        
         return nil
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 1 {
             return 80
         }
@@ -141,12 +107,6 @@ class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return view
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 && indexPath.row == 0 {
-            signIn()
-        }
-    }
-    
     // MARK: Button Method
     
     func signUp(sender: UIButton!) {
@@ -155,15 +115,20 @@ class LoginVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func signIn() {
+
+        let phone = self.formValues()["phone"] as String
+        let pwd = self.formValues()["pwd"] as String
         let webSH = WebServicesHandler.sharedHandler
         SVProgressHUD.show()
-        webSH.signin(phone: inputedPhone!, pwd: inputedPwd!) { (data) -> Void in
+        webSH.signin(phone: phone, pwd: pwd) { (data) -> Void in
             SVProgressHUD.dismiss()
             if let uid = data["success"].int {
                 println("登入成功 uid：\(uid)")
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: USER_DID_LOGIN_LEY)
-                NSUserDefaults.standardUserDefaults().setObject(self.inputedPwd!, forKey: USER_PWD_KEY)
-                NSUserDefaults.standardUserDefaults().setObject(self.inputedPhone!, forKey: USER_PHONE_KEY)
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: USER_DID_LOGIN_KEY)
+                NSUserDefaults.standardUserDefaults().setObject(phone, forKey: USER_PHONE_KEY)
+                NSUserDefaults.standardUserDefaults().setObject(pwd, forKey: USER_PWD_KEY)
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(USER_DID_LOGIN, object: nil)
                 self.navigationController?.popViewControllerAnimated(true)
             } else {
                 println("帐号或密码不正确")

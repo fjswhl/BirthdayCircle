@@ -14,5 +14,5 @@
 #import "SVProgressHUD.h"
 #import <CommonCrypto/CommonCrypto.h>
 #import "XLForm.h"
-
+#import "CoreData+MagicalRecord.h"
 #endif

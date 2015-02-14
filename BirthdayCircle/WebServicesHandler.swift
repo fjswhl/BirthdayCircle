@@ -31,7 +31,7 @@ class WebServicesHandler: NSObject {
     
     var userLogged: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_LEY)
+            return NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY)
         }
     }
     
@@ -66,6 +66,17 @@ class WebServicesHandler: NSObject {
         
         requestDispatcher(params, url, handler)
         
+    }
+    
+    func autoLogin(handler: (data: JSON) -> Void) {
+        if NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY) {
+            
+            let pwd = NSUserDefaults.standardUserDefaults().objectForKey(USER_PWD_KEY) as String
+            let phone = NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String
+            
+            println("---自动登入中---")
+            signin(phone: phone, pwd: pwd, handler: handler)
+        }
     }
     
     func logout(handler: (data: JSON) -> Void) {
@@ -172,26 +183,33 @@ class WebServicesHandler: NSObject {
     func requestDispatcher(params: [String: AnyObject]?, _ url: String, _ handler: (data: JSON) -> Void) {
         request(.POST, url, parameters: params)
             .responseJSON { (req, _, data, error) -> Void in
+                let json = JSON(data!)
+                self.debugInfo(url, params, json)
+                
                 if error != nil {
                     println("\(__FUNCTION__) errors: \(error)")
                 }
                 
-                let json = JSON(data!)
+
                 /// 如果用户已登入，但是 session 过期了，则自动重新登入
                 if json["error"].stringValue == "loadfirst" || json["error"].stringValue == "loginfirst"{
-                    let phone = NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String
-                    let pwd = NSUserDefaults.standardUserDefaults().objectForKey(USER_PWD_KEY) as String
-                    self.signin(phone: phone, pwd: pwd, handler: { (data) -> Void in
-                        println("自动登入")
-                        self.requestDispatcher(params, url, handler)
+                    self.autoLogin({ (data) -> Void in
+
+                        if let uid = data["success"].int {
+                            println("登入成功 uid：\(uid)")
+                            self.requestDispatcher(params, url, handler)
+                        } else {
+                            println("帐号或密码不正确")
+                        }
                     })
-                    
+
+
                     return
                 }
                 
                 handler(data: json)
                 
-                self.debugInfo(url, params, json)
+
                 
         }
         

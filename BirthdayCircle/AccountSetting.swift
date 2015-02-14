@@ -8,9 +8,11 @@
 
 import UIKit
 
+let USER_DID_LOGOUT = "USER_DID_LOGOUT"
+
 class AccountSetting: XLFormViewController {
     
-    var profile: UserProfile!
+    var profile: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +30,8 @@ class AccountSetting: XLFormViewController {
         if let p = UserProfileService.sharedProfile.profile {
             self.profile = p
         } else {
-            UserProfileService.sharedProfile.fetchProfile({ (userProfile) in
-                self.profile = userProfile
+            UserProfileService.sharedProfile.fetchProfile({ (User) in
+                self.profile = User
             })
         }
         initializeForm()
@@ -51,7 +53,7 @@ class AccountSetting: XLFormViewController {
         
         var row = XLFormRowDescriptor(tag: "acid", rowType: XLFormRowDescriptorTypeInfo, title: "账户ID")
 
-        row.cellConfig.setObject(String(self.profile.uid!), forKey: "detailTextLabel.text")
+        row.cellConfig.setObject(String(self.profile.uid!.integerValue), forKey: "detailTextLabel.text")
         section.addFormRow(row)
         row = XLFormRowDescriptor(tag: "logac", rowType: XLFormRowDescriptorTypeInfo, title: "登入帐号")
         row.cellConfig.setObject(profile.phone!, forKey: "detailTextLabel.text")
@@ -88,23 +90,23 @@ class AccountSetting: XLFormViewController {
     func logout() {
         let webSH = WebServicesHandler.sharedHandler
         webSH.logout { (data) -> Void in
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: USER_DID_LOGIN_LEY)
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: USER_DID_LOGIN_KEY)
             self.navigationController?.popViewControllerAnimated(true)
             println("用户注销")
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(USER_DID_LOGOUT, object: nil)
         }
     }
     
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5.0
-    }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20.0
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1.0
     }
     
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
     
 }
 
