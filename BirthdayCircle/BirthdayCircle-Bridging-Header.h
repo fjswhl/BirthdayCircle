@@ -15,4 +15,5 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import "XLForm.h"
 #import "CoreData+MagicalRecord.h"
+#import <AFNetworking/AFNetworking.h>
 #endif

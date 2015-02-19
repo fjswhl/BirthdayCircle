@@ -51,7 +51,7 @@ class MeVC: XLFormViewController {
             section.addFormRow(row)
                 
             row = self.form.formRowWithTag(AC_SETTING_ROW_KEY)
-            row.action.viewControllerClass = AccountSetting.self
+            row.action.viewControllerClass = AccountSettingVC.self
             self.initializeProfile()
         }
         
@@ -68,6 +68,13 @@ class MeVC: XLFormViewController {
         }
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+
+    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -109,7 +116,7 @@ class MeVC: XLFormViewController {
         if NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY) == false {
             row.action.viewControllerClass = LoginVC.self
         } else {
-            row.action.viewControllerClass = AccountSetting.self
+            row.action.viewControllerClass = AccountSettingVC.self
         }
         img = UIImage(named: "ic_account_setting")
         row["imageView.image"] = img!
@@ -121,7 +128,7 @@ class MeVC: XLFormViewController {
     
     
     /**
-    如果用户登入了，获取个人信息，先从数据库取，没有的话从网络取
+    如果用户登入了，获取个人信息
     
     */
     func initializeProfile() {
@@ -145,18 +152,13 @@ class MeVC: XLFormViewController {
         return 1.0
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY) && indexPath.section == 0 {
-            return 80
-        }
-        return 44
-    }
-    
     // MARK: Helper
+    
     func rowForUserDidLogin() -> XLFormRowDescriptor {
         var row = XLFormRowDescriptor()
         row.tag = "me"
         row.cellClass = MeCell.self
+        row.action.viewControllerClass = UpdateProfileVC.self
         return row
     }
     
@@ -173,11 +175,12 @@ class MeVC: XLFormViewController {
         var row = self.form.formRowWithTag("me")
         row["nameLabel.text"] = self.user.username
         row["birthdayLabel.text"] = (self.user.birthday != "" ? self.user.birthday : "未设置")
+    
         self.tableView.reloadData()
         request(.GET, self.user.portrait!, parameters: nil)
             .response { (req, res, data, err) -> Void in
                 if res != nil {
-            row["avatar"] = UIImage(data: data as NSData)
+            row["avatarImgView.image"] = UIImage(data: data as NSData)
                     self.tableView.reloadData()
                 }
         }

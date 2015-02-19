@@ -23,9 +23,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         MagicalRecord.setupCoreDataStackWithStoreNamed("Model")
         
+        //UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        self.window?.tintColor = HexUIColor("f54251")
+        let layer = CAGradientLayer()
+        layer.colors = [HexUIColor("f54251").CGColor,
+                        HexUIColor("ff5e24").CGColor]
+        layer.frame = CGRect(x: 0, y: 0, width: 200, height: 64)
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, true, 0.0)
+        layer.renderInContext(UIGraphicsGetCurrentContext())
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        UINavigationBar.appearance().setBackgroundImage(image, forBarMetrics: UIBarMetrics.Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().barTintColor = UIColor.clearColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         return true
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

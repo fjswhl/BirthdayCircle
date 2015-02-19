@@ -10,14 +10,18 @@ import UIKit
 
 private let sharedInstance = UserProfileService()
 
-class UserProfileService {
+class UserProfileService: NSObject {
     
-    private init() {
+    typealias handleProfile = (userProfile: User?) -> Void
+    
+    private override init() {
+
     }
     
     class var sharedProfile: UserProfileService {
         return sharedInstance
     }
+
     
     var profile: User?
     
@@ -27,7 +31,28 @@ class UserProfileService {
     
     :param: completion 可在此闭包里访问 profile
     */
-    func fetchProfile(completion: (userProfile: User) -> Void) {
+    
+    
+    func loadProfileFromRemote(completion: handleProfile?) {
+        let webSh = WebServicesHandler.sharedHandler
+        
+        webSh.fetchProfile { (data) -> Void in
+            if let t = data["success"].null {
+                println("请先登入")
+            }
+            
+            if self.profile == nil {
+                self.profile = User.MR_createEntity()
+            }
+            self.profile?.fillWithJSON(data["success"])
+            
+            NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+            
+            completion?(userProfile: self.profile!)
+        }
+    }
+    
+    func fetchProfile(completion: handleProfile) {
         
         let results = User.MR_findByAttribute("phone", withValue: NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String)
         if results.count != 0 {
@@ -37,19 +62,8 @@ class UserProfileService {
         }
         
         
-        let webSh = WebServicesHandler.sharedHandler
-        
-        webSh.fetchProfile { (data) -> Void in
-            if let t = data["success"].null {
-                println("请先登入")
-            }
-            
-            self.profile = User.MR_createEntity()
-            self.profile?.fillWithJSON(data["success"])
-
-            NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
-
-            completion(userProfile: self.profile!)
+        loadProfileFromRemote { (userProfile) -> Void in
+            completion(userProfile: userProfile)
         }
     }
 }

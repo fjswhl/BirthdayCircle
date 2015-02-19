@@ -119,7 +119,9 @@ class LoginVC: XLFormViewController {
         let phone = self.formValues()["phone"] as String
         let pwd = self.formValues()["pwd"] as String
         let webSH = WebServicesHandler.sharedHandler
+        
         SVProgressHUD.show()
+        
         webSH.signin(phone: phone, pwd: pwd) { (data) -> Void in
             SVProgressHUD.dismiss()
             if let uid = data["success"].int {
@@ -135,6 +137,7 @@ class LoginVC: XLFormViewController {
             }
         }
     }
+
 }
 
 

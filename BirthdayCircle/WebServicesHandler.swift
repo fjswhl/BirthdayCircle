@@ -48,6 +48,14 @@ class WebServicesHandler: NSObject {
         requestDispatcher(params, url, handler)
     }
     
+    /**
+    注册
+    
+    :param: pwd
+    :param: checkCode
+    :param: phone
+    :param: handler
+    */
     func signup(#pwd: String, checkCode: String, phone: String, handler: (data: JSON) -> Void) {
         let md5ed = pwd.md5[0...19].md5
         let params = ["password": md5ed,
@@ -58,6 +66,13 @@ class WebServicesHandler: NSObject {
         requestDispatcher(params, url, handler)
     }
     
+    /**
+    登入
+    
+    :param: phone
+    :param: pwd
+    :param: handler
+    */
     func signin(#phone: String, pwd: String, handler: (data: JSON) -> Void) {
         let md5ed = pwd.md5
         let params = ["phone": phone,
@@ -68,6 +83,11 @@ class WebServicesHandler: NSObject {
         
     }
     
+    /**
+    用户已经登入的情况下，自动登入
+    
+    :param: handler
+    */
     func autoLogin(handler: (data: JSON) -> Void) {
         if NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY) {
             
@@ -79,11 +99,25 @@ class WebServicesHandler: NSObject {
         }
     }
     
+    /**
+    注销
+    
+    :param: handler
+    */
     func logout(handler: (data: JSON) -> Void) {
         let url = synthesizedURL(path: logoutURL)
         requestDispatcher(nil, url, handler)
     }
     
+    /**
+    更新个人资料
+    
+    :param: birthday
+    :param: birthplace
+    :param: username
+    :param: sex
+    :param: handler
+    */
     func updateProfile(#birthday: String?, birthplace: String?, username: String?, sex: String?, handler: (data: JSON) -> Void) {
         let url = synthesizedURL(path: updateProfileURL)
         var params: [String: String] = [String: String]()
@@ -100,13 +134,43 @@ class WebServicesHandler: NSObject {
             params["sex"] = sex
         }
         
-        requestDispatcher(params, url, handler)
+        let data = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        let jsonString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+        requestDispatcher(["profile": jsonString!], url, handler)
     }
+    
+    /**
+    更新头像
+    
+    :param: fileURL
+    :param: handler
+    */
     
     func updatePortrait(fileURL: NSURL, handler: (data: JSON) -> Void) {
         let url = synthesizedURL(path: updatePortraitURL)
         
+
         upload(.POST, url, fileURL)
+            .responseJSON { (_, _, data, _) -> Void in
+            println(data)
+        }
+        let manager = AFHTTPRequestOperationManager()
+        
+        manager.GET("www.baidu.com", parameters: nil, success: { (_, _) -> Void in
+            
+        }, failure: nil)
+        
+        manager.POST(url, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+            
+            formData.appendPartWithFileURL(fileURL, name: "portrait", error: nil)
+            return
+            
+        }, success: { (_, data) -> Void in
+            println(data)
+        }) { (_, err) -> Void in
+            println(err)
+        }
+
     }
     
     func fetchProfile(handler: (data: JSON) -> Void) {

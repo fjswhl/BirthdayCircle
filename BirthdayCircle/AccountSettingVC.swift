@@ -1,5 +1,5 @@
 //
-//  AccountSetting.swift
+//  AccountSettingVC.swift
 //  BirthdayCircle
 //
 //  Created by Lin on 15/2/11.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-let USER_DID_LOGOUT = "USER_DID_LOGOUT"
+let USER_DID_LOGOUT = "USER_DID_LOGOUT"  // Notification Key
 
-class AccountSetting: XLFormViewController {
+class AccountSettingVC: XLFormViewController {
     
     var profile: User!
     
@@ -24,6 +24,7 @@ class AccountSetting: XLFormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     override init() {
         super.init()
