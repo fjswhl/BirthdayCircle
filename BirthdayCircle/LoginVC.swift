@@ -9,7 +9,7 @@
 import UIKit
 
 
-let USER_DID_LOGIN = "USER_DID_LOGIN"
+let USER_DID_LOGIN_NOTIFICATION = "USER_DID_LOGIN_NOTIFICATION"
 
 class LoginVC: XLFormViewController {
     
@@ -130,7 +130,7 @@ class LoginVC: XLFormViewController {
                 NSUserDefaults.standardUserDefaults().setObject(phone, forKey: USER_PHONE_KEY)
                 NSUserDefaults.standardUserDefaults().setObject(pwd, forKey: USER_PWD_KEY)
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(USER_DID_LOGIN, object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(USER_DID_LOGIN_NOTIFICATION, object: nil)
                 self.navigationController?.popViewControllerAnimated(true)
             } else {
                 println("帐号或密码不正确")

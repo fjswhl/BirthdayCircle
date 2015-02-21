@@ -7,12 +7,6 @@
 [submodule "submodule/Cartography"]
 	path = submodule/Cartography
 	url = git@github.com:robb/Cartography.git
-[submodule "submodule/SDWebImage"]
-	path = submodule/SDWebImage
-	url = git@github.com:rs/SDWebImage.git
-[submodule "submodule/SVProgressHUD"]
-	path = submodule/SVProgressHUD
-	url = git@github.com:TransitApp/SVProgressHUD.git
 [submodule "submodule/Async"]
 	path = submodule/Async
 	url = git@github.com:duemunk/Async.git
@@ -25,9 +19,6 @@
 [submodule "submodule/XLForm"]
 	path = submodule/XLForm
 	url = git@github.com:xmartlabs/XLForm.git
-[submodule "submodule/ReactiveCoco"]
-	path = submodule/ReactiveCoco
-	url = git@github.com:yusefnapora/ReactiveCocoa.git
 [submodule "submodule/MagicalRecord"]
 	path = submodule/MagicalRecord
 	url = git@github.com:magicalpanda/MagicalRecord.git

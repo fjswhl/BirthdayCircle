@@ -52,6 +52,15 @@ class UserProfileService: NSObject {
         }
     }
     
+    func loadProfileFormCoreData() -> Bool {
+        let results = User.MR_findByAttribute("phone", withValue: NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String)
+        if results.count != 0 {
+            self.profile = results[0] as? User
+            return true
+        }
+        return false
+    }
+    
     func fetchProfile(completion: handleProfile) {
         
         let results = User.MR_findByAttribute("phone", withValue: NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String)
@@ -66,4 +75,5 @@ class UserProfileService: NSObject {
             completion(userProfile: userProfile)
         }
     }
+    
 }

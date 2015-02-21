@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.clearColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        WebServicesHandler.sharedHandler.autoLogin { (data) -> Void in
+        }
         return true
     }
     
@@ -53,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        WebServicesHandler.sharedHandler.autoLogin { (data) -> Void in
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

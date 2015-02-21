@@ -18,6 +18,14 @@ class UpdateProfileVC: XLFormViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "saveProfile")
+        
+        var row = self.form.formRowWithTag(_avatarRowTag)
+        RACObserve(UserProfileService.sharedProfile.profile!, "imageData").subscribeNext { (object) -> Void in
+            if let data = object as? NSData {
+                row["avatarImgView.image"] = UIImage(data: data)
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -53,6 +61,7 @@ class UpdateProfileVC: XLFormViewController, UIImagePickerControllerDelegate, UI
         row.tag = _avatarRowTag
         row.cellClass = UpdateAvatarCell.self
         row.action.formSelector = "takeAvatarFromLibrary"
+
         section.addFormRow(row)
         
         section = XLFormSectionDescriptor()
@@ -108,7 +117,7 @@ class UpdateProfileVC: XLFormViewController, UIImagePickerControllerDelegate, UI
     先存进数据库，再 POST 到服务器
     */
     func saveProfile() {
-        println(self.form.formValues())
+//        println(self.form.formValues())
         
         let formValues = self.httpParameters()
         
@@ -120,19 +129,25 @@ class UpdateProfileVC: XLFormViewController, UIImagePickerControllerDelegate, UI
         let birthplace = formValues["birthplace"] as String
         let username = formValues["name"] as String
         var sex = formValues["sex"] as String
-
+        
+        let results = User.MR_findByAttribute("phone", withValue: NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String)
+        if results.count != 0 {
+            let user = results[0] as? User
+            user?.birthday = dateString
+            user?.birthplace = birthplace
+            user?.username = username
+            user?.sex = sex
+        }
+        
         let webSh = WebServicesHandler.sharedHandler
         
+        SVProgressHUD.showWithMaskType(SVProgressHUDMaskType.Clear)
         webSh.updateProfile(birthday: dateString, birthplace: birthplace, username: username, sex: sex) { (data) -> Void in
-            println(data)
+            SVProgressHUD.dismiss()
             UserProfileService.sharedProfile.loadProfileFromRemote(nil)
         }
         
-        if let imgURLString = formValues["avatar"] as? String {
-            webSh.updatePortrait(NSURL(string: imgURLString)!, handler: { (data) -> Void in
-                println(data)
-            })
-        }
+
 
     }
     
@@ -174,19 +189,32 @@ class UpdateProfileVC: XLFormViewController, UIImagePickerControllerDelegate, UI
         let image = info[UIImagePickerControllerEditedImage] as UIImage
         let row = self.form.formRowWithTag(_avatarRowTag)
         
-        // save to disk
+        // save to disk for upload
         let documentURL = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last as NSURL
         let imgURL = documentURL.URLByAppendingPathComponent("portrait.png")
         let imgData = UIImagePNGRepresentation(image)
         imgData.writeToURL(imgURL, atomically: true)
         row.value = imgURL.URLString
         
+        // save to core data
+        if let user = UserProfileService.sharedProfile.profile {
+            user.imageData = imgData
+            NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+        }
         
-        picker.dismissViewControllerAnimated(true, completion: { [weak self] () -> Void in
-            row["avatarImgView.image"] = image
-            self!.tableView.reloadData()
-        })
+        // upload to server
+        if let imgURLString = self.httpParameters()["avatar"] as? String {
+            WebServicesHandler.sharedHandler.updatePortrait(NSURL(string: imgURLString)!, handler: { (data) -> Void in
+                
+                NSFileManager.defaultManager().removeItemAtURL(imgURL, error: nil)
+                
+                // 重新获取头像的地址
+                UserProfileService.sharedProfile.loadProfileFromRemote(nil)
+                return
+            })
+        }
         
+        picker.dismissViewControllerAnimated(true, completion: nil)
 
     }
 

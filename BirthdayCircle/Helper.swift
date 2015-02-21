@@ -28,3 +28,15 @@ func HexUIColor (hex:String) -> UIColor {
         alpha: CGFloat(1.0)
     )
 }
+
+
+func GetUserAvatarFromDisk() -> UIImage? {
+    let documentURL = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last as NSURL
+    let imgURL = documentURL.URLByAppendingPathComponent("portrait.png")
+    
+    if let data = NSData(contentsOfURL: imgURL) {
+        return UIImage(data: data)
+    }
+    return nil
+    
+}

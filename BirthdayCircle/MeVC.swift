@@ -13,8 +13,6 @@ private let AC_SETTING_ROW_KEY = "setting"
 
 class MeVC: XLFormViewController {
     
-    var user: User!
-    
     override init() {
         super.init()
         initializeForm()
@@ -30,62 +28,10 @@ class MeVC: XLFormViewController {
         initializeForm()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.title = "我"
-        initializeProfile()
-        
-        
-        /**
-        *  接收用户登入或注销的通知，并相应更改表视图
-        */
-        
-        NSNotificationCenter.defaultCenter().rac_addObserverForName(USER_DID_LOGIN, object: nil)
-            .takeUntil(self.rac_willDeallocSignal())
-            .subscribeNext { (_) -> Void in
-                
-            self.form.removeFormRowWithTag("me")
-            let section = self.form.formSections[0] as XLFormSectionDescriptor
-            var row = self.rowForUserDidLogin()
-            section.addFormRow(row)
-                
-            row = self.form.formRowWithTag(AC_SETTING_ROW_KEY)
-            row.action.viewControllerClass = AccountSettingVC.self
-            self.initializeProfile()
-        }
-        
-        NSNotificationCenter.defaultCenter().rac_addObserverForName(USER_DID_LOGOUT, object: nil)
-            .takeUntil(self.rac_willDeallocSignal())
-            .subscribeNext { (_) -> Void in
-    
-            self.form.removeFormRowWithTag("me")
-            let section = self.form.formSections[0] as XLFormSectionDescriptor
-            section.addFormRow(self.rowForUserNotLogin())
-                
-            var row = self.form.formRowWithTag(AC_SETTING_ROW_KEY)
-            row.action.viewControllerClass = LoginVC.self
-        }
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-
-    }
-
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-
-    }
-    
     func initializeForm() {
         let form = XLFormDescriptor()
         var section = XLFormSectionDescriptor()
-
+        
         form.addFormSection(section)
         var row = rowForUserDidLogin()
         if NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY) == false {
@@ -127,6 +73,62 @@ class MeVC: XLFormViewController {
     }
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.title = "我"
+        initializeProfile()
+        
+        
+        /**
+        *  接收用户登入或注销的通知，并相应更改表视图
+        */
+        
+        NSNotificationCenter.defaultCenter().rac_addObserverForName(USER_DID_LOGIN_NOTIFICATION, object: nil)
+            .takeUntil(self.rac_willDeallocSignal())
+            .subscribeNext { (_) -> Void in
+                
+            self.form.removeFormRowWithTag("me")
+            let section = self.form.formSections[0] as XLFormSectionDescriptor
+            var row = self.rowForUserDidLogin()
+            section.addFormRow(row)
+                
+            row = self.form.formRowWithTag(AC_SETTING_ROW_KEY)
+            row.action.viewControllerClass = AccountSettingVC.self
+            self.initializeProfile()
+        }
+        
+        NSNotificationCenter.defaultCenter().rac_addObserverForName(USER_DID_LOGOUT_NOTIFICATION, object: nil)
+            .takeUntil(self.rac_willDeallocSignal())
+            .subscribeNext { (_) -> Void in
+    
+            self.form.removeFormRowWithTag("me")
+            let section = self.form.formSections[0] as XLFormSectionDescriptor
+            section.addFormRow(self.rowForUserNotLogin())
+                
+            var row = self.form.formRowWithTag(AC_SETTING_ROW_KEY)
+            row.action.viewControllerClass = LoginVC.self
+        }
+        
+        
+//        /**
+//            下拉刷新
+//        */
+//        self.tableView.addPullToRefreshWithActionHandler {
+//            UserProfileService.sharedProfile.loadProfileFromRemote({ (userProfile) -> Void in
+//                self.tableView.pullToRefreshView.stopAnimating()
+//            })
+//        }
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+
+    }
+    
+
     /**
     如果用户登入了，获取个人信息
     
@@ -135,7 +137,6 @@ class MeVC: XLFormViewController {
         if NSUserDefaults.standardUserDefaults().boolForKey(USER_DID_LOGIN_KEY) {
             let pfs = UserProfileService.sharedProfile
             pfs.fetchProfile({ (user) -> Void in
-                self.user = user
                 self.setupLoggedRowInfo()
             })
         }
@@ -159,6 +160,8 @@ class MeVC: XLFormViewController {
         row.tag = "me"
         row.cellClass = MeCell.self
         row.action.viewControllerClass = UpdateProfileVC.self
+        row["birthdayLabel.text"] = "未设置"
+
         return row
     }
     
@@ -173,15 +176,33 @@ class MeVC: XLFormViewController {
     
     func setupLoggedRowInfo() {
         var row = self.form.formRowWithTag("me")
-        row["nameLabel.text"] = self.user.username
-        row["birthdayLabel.text"] = (self.user.birthday != "" ? self.user.birthday : "未设置")
-    
-        self.tableView.reloadData()
-        request(.GET, self.user.portrait!, parameters: nil)
+
+        RACObserve(UserProfileService.sharedProfile.profile!, "username").subscribeNext { (object) -> Void in
+            row["nameLabel.text"] = object as String
+
+        }
+        RACObserve(UserProfileService.sharedProfile.profile!, "birthday").subscribeNext { (object) -> Void in
+            row["birthdayLabel.text"] = object as String
+            self.tableView.reloadData()
+        }
+        RACObserve(UserProfileService.sharedProfile.profile!, "imageData").subscribeNext { (object) -> Void in
+            if let data = object as? NSData {
+                row["avatarImgView.image"] = UIImage(data: data)
+                self.tableView.reloadData()
+
+            }
+        }
+        request(.GET, UserProfileService.sharedProfile.profile!.portrait!, parameters: nil)
             .response { (req, res, data, err) -> Void in
                 if res != nil {
-            row["avatarImgView.image"] = UIImage(data: data as NSData)
-                    self.tableView.reloadData()
+                    if let user = User.currentUser() {
+                        println(req)
+                        let imageData = data as? NSData
+                        if let image = UIImage(data: imageData!) {
+                            user.imageData = imageData
+                        }
+                        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+                    }
                 }
         }
     }

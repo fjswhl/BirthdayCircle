@@ -8,7 +8,7 @@
 
 import UIKit
 
-let USER_DID_LOGOUT = "USER_DID_LOGOUT"  // Notification Key
+let USER_DID_LOGOUT_NOTIFICATION = "USER_DID_LOGOUT"  // Notification Key
 
 class AccountSettingVC: XLFormViewController {
     
@@ -95,7 +95,7 @@ class AccountSettingVC: XLFormViewController {
             self.navigationController?.popViewControllerAnimated(true)
             println("用户注销")
             
-            NSNotificationCenter.defaultCenter().postNotificationName(USER_DID_LOGOUT, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(USER_DID_LOGOUT_NOTIFICATION, object: nil)
         }
     }
     

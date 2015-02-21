@@ -22,7 +22,8 @@ class User: NSManagedObject {
     @NSManaged var portraitBig: String?
     @NSManaged var sex: String?
     @NSManaged var birthplace: String?
-
+    @NSManaged var imageData: NSData?
+    
     func fillWithJSON(json: JSON) {
         phone = json["phone"].string
         uid = json["uid"].int
@@ -33,5 +34,14 @@ class User: NSManagedObject {
         portraitBig = json["portraitBig"].string
         sex = json["sex"].string
         birthplace = json["birthplace"].string
+    }
+    
+    class func currentUser() -> User? {
+        let results = User.MR_findByAttribute("phone", withValue: NSUserDefaults.standardUserDefaults().objectForKey(USER_PHONE_KEY) as String)
+        if results.count != 0 {
+            let user = results[0] as? User
+            return user
+        }
+        return nil
     }
 }

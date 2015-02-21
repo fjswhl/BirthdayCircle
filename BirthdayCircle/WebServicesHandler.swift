@@ -149,16 +149,7 @@ class WebServicesHandler: NSObject {
     func updatePortrait(fileURL: NSURL, handler: (data: JSON) -> Void) {
         let url = synthesizedURL(path: updatePortraitURL)
         
-
-        upload(.POST, url, fileURL)
-            .responseJSON { (_, _, data, _) -> Void in
-            println(data)
-        }
         let manager = AFHTTPRequestOperationManager()
-        
-        manager.GET("www.baidu.com", parameters: nil, success: { (_, _) -> Void in
-            
-        }, failure: nil)
         
         manager.POST(url, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
             
