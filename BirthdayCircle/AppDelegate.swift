@@ -25,9 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.window?.tintColor = HexUIColor("f54251")
+        
         let layer = CAGradientLayer()
+        
         layer.colors = [HexUIColor("f54251").CGColor,
                         HexUIColor("ff5e24").CGColor]
+        
         layer.frame = CGRect(x: 0, y: 0, width: 200, height: 64)
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, true, 0.0)
         layer.renderInContext(UIGraphicsGetCurrentContext())
@@ -40,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         WebServicesHandler.sharedHandler.autoLogin { (data) -> Void in
+            
         }
         return true
     }

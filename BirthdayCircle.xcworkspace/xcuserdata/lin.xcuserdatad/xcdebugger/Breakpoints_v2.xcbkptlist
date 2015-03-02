@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BirthdayCircle/MeVC.swift"
-            timestampString = "446195374.626617"
+            timestampString = "446284440.25622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "setupLoggedRowInfo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BirthdayCircle/MeVC.swift"
-            timestampString = "446195374.626617"
+            timestampString = "446284440.25622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "setupLoggedRowInfo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -64,6 +64,68 @@
             startingLineNumber = "25"
             endingLineNumber = "25"
             landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BirthdayCircle/BirthdayBookVC.swift"
+            timestampString = "446284652.747908"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "initializeUI()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BirthdayCircle.BirthdayBookVC.initializeUI (BirthdayCircle.BirthdayBookVC)() -&gt; ()"
+                  moduleName = "BirthdayCircle"
+                  urlString = "file:///Users/lin/Documents/Project/BirthdayCircle/BirthdayCircle/BirthdayBookVC.swift"
+                  timestampString = "446284794.793065"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BirthdayCircle.BirthdayBookVC.initializeUI (BirthdayCircle.BirthdayBookVC)() -&gt; ()"
+                  moduleName = "BirthdayCircle"
+                  urlString = "file:///Users/lin/Documents/Project/BirthdayCircle/BirthdayCircle/BirthdayBookVC.swift"
+                  timestampString = "446284794.793411"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "2020">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BirthdayCircle/BirthdayBookVC.swift"
+            timestampString = "446284673.522056"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "initializeUI()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

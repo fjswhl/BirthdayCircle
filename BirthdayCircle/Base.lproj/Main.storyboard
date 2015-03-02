@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jS3-ou-1af"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Dej-6o-QeW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -25,12 +25,12 @@
             </objects>
             <point key="canvasLocation" x="-957" y="-560"/>
         </scene>
-        <!--Item-->
+        <!--生日簿-->
         <scene sceneID="S9H-p0-A7a">
             <objects>
                 <navigationController id="VEO-V6-IJ4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="tab2" id="75V-IE-gSP"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1dH-Zq-tcr">
+                    <tabBarItem key="tabBarItem" title="生日簿" id="75V-IE-gSP"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1dH-Zq-tcr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -46,7 +46,7 @@
         <scene sceneID="qjf-ov-bPs">
             <objects>
                 <navigationController id="3kl-WS-Os1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="tab4" id="dfn-NR-j7w"/>
+                    <tabBarItem key="tabBarItem" title="我" id="dfn-NR-j7w"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9ML-8y-jV6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -82,7 +82,7 @@
         <!--生日圈-->
         <scene sceneID="36b-eb-uOW">
             <objects>
-                <viewController id="Z0b-Dx-bK0" sceneMemberID="viewController">
+                <viewController id="Z0b-Dx-bK0" customClass="BirthdayCircleVC" customModule="BirthdayCircle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hbp-fy-r0X"/>
                         <viewControllerLayoutGuide type="bottom" id="6nL-G5-mLE"/>
@@ -101,7 +101,7 @@
         <!--首页-->
         <scene sceneID="9Jf-tG-LFj">
             <objects>
-                <viewController id="Mlc-TW-p2d" sceneMemberID="viewController">
+                <viewController id="Mlc-TW-p2d" customClass="HomeVC" customModule="BirthdayCircle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tLe-4B-lY3"/>
                         <viewControllerLayoutGuide type="bottom" id="YVb-82-KJ5"/>

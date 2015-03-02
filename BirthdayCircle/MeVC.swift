@@ -76,6 +76,11 @@ class MeVC: XLFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Tabbar
+        let simg = UIImage(named: "tab4_2")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.tabBarItem.selectedImage = simg
+        
+        
         self.title = "我"
         initializeProfile()
         
@@ -119,6 +124,7 @@ class MeVC: XLFormViewController {
 //                self.tableView.pullToRefreshView.stopAnimating()
 //            })
 //        }
+
 
     }
     

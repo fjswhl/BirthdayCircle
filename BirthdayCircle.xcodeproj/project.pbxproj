@@ -44,6 +44,9 @@
 		3E7C1CF31A89D14B00424C14 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7C1CF21A89D14B00424C14 /* Info.plist */; };
 		3E7C1D101A89D26F00424C14 /* RAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C1D0F1A89D26F00424C14 /* RAC.swift */; };
 		3E7C1D121A89E09200424C14 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C1D111A89E09200424C14 /* MD5.swift */; };
+		3E98AC841A99BF8E005B17D3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98AC831A99BF8E005B17D3 /* HomeVC.swift */; };
+		3E98AC861A99BFEA005B17D3 /* BirthdayCircleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98AC851A99BFEA005B17D3 /* BirthdayCircleVC.swift */; };
+		3E98AC881A99C062005B17D3 /* AddBirthdayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98AC871A99C062005B17D3 /* AddBirthdayVC.swift */; };
 		3EAAC4CF1A95A7C300BB6F5E /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAC4931A95A7C300BB6F5E /* MagicalImportFunctions.m */; };
 		3EAAC4D01A95A7C300BB6F5E /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAC4951A95A7C300BB6F5E /* NSAttributeDescription+MagicalDataImport.m */; };
 		3EAAC4D11A95A7C300BB6F5E /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAC4971A95A7C300BB6F5E /* NSEntityDescription+MagicalDataImport.m */; };
@@ -173,6 +176,9 @@
 		3E7C1CF21A89D14B00424C14 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E7C1D0F1A89D26F00424C14 /* RAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAC.swift; sourceTree = "<group>"; };
 		3E7C1D111A89E09200424C14 /* MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
+		3E98AC831A99BF8E005B17D3 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		3E98AC851A99BFEA005B17D3 /* BirthdayCircleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdayCircleVC.swift; sourceTree = "<group>"; };
+		3E98AC871A99C062005B17D3 /* AddBirthdayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBirthdayVC.swift; sourceTree = "<group>"; };
 		3EAAC4921A95A7C300BB6F5E /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		3EAAC4931A95A7C300BB6F5E /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		3EAAC4941A95A7C300BB6F5E /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -348,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				3E0B25B31A986B2200E2A9D8 /* BirthdayBookVC.swift */,
+				3E98AC871A99C062005B17D3 /* AddBirthdayVC.swift */,
 			);
 			name = BirthdayBook;
 			sourceTree = "<group>";
@@ -491,6 +498,22 @@
 				3E7A1AD71A887D5600E6A224 /* SwiftyJSON.swift */,
 			);
 			name = SwiftJSON;
+			sourceTree = "<group>";
+		};
+		3E98AC811A99BA14005B17D3 /* BirthdayCircle */ = {
+			isa = PBXGroup;
+			children = (
+				3E98AC851A99BFEA005B17D3 /* BirthdayCircleVC.swift */,
+			);
+			name = BirthdayCircle;
+			sourceTree = "<group>";
+		};
+		3E98AC821A99BA26005B17D3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3E98AC831A99BF8E005B17D3 /* HomeVC.swift */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 		3EAAC48F1A95A7C300BB6F5E /* MagicalRecord */ = {
@@ -728,6 +751,8 @@
 		3EB903C11A889FAB009CEBCB /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				3E98AC821A99BA26005B17D3 /* Home */,
+				3E98AC811A99BA14005B17D3 /* BirthdayCircle */,
 				3E0B25B21A986ACF00E2A9D8 /* BirthdayBook */,
 				3EB903C41A88ACDB009CEBCB /* Me */,
 			);
@@ -949,6 +974,7 @@
 				3EAAC5421A95A9B100BB6F5E /* XLFormSelectorCell.m in Sources */,
 				3E7A1AA01A887CBC00E6A224 /* Property.swift in Sources */,
 				3EAAC53E1A95A9B100BB6F5E /* XLFormInlineSelectorCell.m in Sources */,
+				3E98AC861A99BFEA005B17D3 /* BirthdayCircleVC.swift in Sources */,
 				3E7A1A9C1A887CBC00E6A224 /* Layout.swift in Sources */,
 				3E7A1A911A887CBC00E6A224 /* Coefficients.swift in Sources */,
 				3E7A1AA21A887CBC00E6A224 /* View.swift in Sources */,
@@ -970,6 +996,7 @@
 				3EAAC5551A95A9B100BB6F5E /* XLFormValidationStatus.m in Sources */,
 				3E7A1A941A887CBC00E6A224 /* ConstraintGroup.swift in Sources */,
 				3EAAC4D01A95A7C300BB6F5E /* NSAttributeDescription+MagicalDataImport.m in Sources */,
+				3E98AC841A99BF8E005B17D3 /* HomeVC.swift in Sources */,
 				3EFB48B71A8A5E4D0022708A /* UserProfileService.swift in Sources */,
 				3EAAC5401A95A9B100BB6F5E /* XLFormPickerCell.m in Sources */,
 				3E7A1A9E1A887CBC00E6A224 /* Point.swift in Sources */,
@@ -1024,6 +1051,7 @@
 				3EAAC4DC1A95A7C300BB6F5E /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				3EAAC5471A95A9B100BB6F5E /* XLFormTextViewCell.m in Sources */,
 				3EAAC4D81A95A7C300BB6F5E /* NSManagedObject+MagicalFinders.m in Sources */,
+				3E98AC881A99C062005B17D3 /* AddBirthdayVC.swift in Sources */,
 				3EAAC53A1A95A9B100BB6F5E /* XLFormCheckCell.m in Sources */,
 				3EAAC4D61A95A7C300BB6F5E /* NSManagedObject+MagicalAggregation.m in Sources */,
 				3EAAC4D91A95A7C300BB6F5E /* NSManagedObject+MagicalRecord.m in Sources */,
@@ -1168,7 +1196,6 @@
 				INFOPLIST_FILE = BirthdayCircle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BirthdayCircle/BirthdayCircle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1189,7 +1216,6 @@
 				INFOPLIST_FILE = BirthdayCircle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BirthdayCircle/BirthdayCircle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
